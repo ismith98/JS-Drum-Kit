@@ -1,0 +1,33 @@
+
+body{
+	height:100%;
+}
+
+.keys{
+	/*left:25%;*/
+	display:flex;
+	align-items:flex-end;
+	justify-content:center;
+}
+
+.key{
+	padding-top:15px;
+	padding-bottom:20px;
+	width:75px;
+	/*height:75px;*/
+	display:inline-block;
+	border:4px solid black;
+	border-radius:10px;
+	color:green;
+	background-color:rgba(0,0,0,0,4);
+	text-align:center;
+	margin:5px;
+	
+	/*text-shadow: 0 0 1px black;*/
+}
+
+kbd{
+	display:block;
+	font-size:30px;
+	color: black;
+}
