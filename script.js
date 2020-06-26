@@ -1,11 +1,10 @@
-//function playSound
-//function removeTransition
 
-document.addEventListener("keydown", (e) => {
-	//console.log(e.keyCode);
-	
+document.addEventListener("keydown", playSound);
+
+function playSound(e) {
 	//Get the html element of the key that was pressed
 	var key = document.querySelector(`.key[data-key='${e.keyCode}']`);
+	if(key==null) return;
 	//Get the html element of the audio for the key that was pressed
 	var audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
 	
@@ -14,26 +13,14 @@ document.addEventListener("keydown", (e) => {
 	audio.play();
 	
 	//If the animation is already playing, then restart it
-	key.classList.remove("playing");
-	
-		
+	key.classList.remove("playing");		
 	key.classList.add("playing");
 	
+	function removeTransition(e) {
+		if(e.propertyName != "transform" ) return;
+		key.classList.remove("playing");
+	}
+	
 	var keys = document.querySelectorAll(".key");
-	keys.forEach(key => {
-		key.addEventListener("transitionend", e => {
-		if(e.propertyName != "transform" ) return;
-		
-		key.classList.remove("playing");
-		//console.log(e);
-	})
-	})
-	/*
-	key.addEventListener("transitionend", e => {
-		if(e.propertyName != "transform" ) return;
-		
-		key.classList.remove("playing");
-		console.log(e);
-	})
-	*/
-})
+	keys.forEach(key => { key.addEventListener("transitionend", removeTransition);});
+}
